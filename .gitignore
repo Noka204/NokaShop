@@ -1,0 +1,25 @@
+# IDEs / Editors
+/.vscode
+/.idea
+*.swp
+*.swo
+
+# Environment variables (CRITICAL)
+.env
+.env.*
+!.env.example
+
+# Composer
+/vendor/
+composer.lock
+
+# OS Settings
+.DS_Store
+Thumbs.db
+
+# Temporaries / Logs
+/temp
+/tmp
+/logs
+*.log
+debug.php

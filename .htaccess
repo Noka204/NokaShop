@@ -1,0 +1,23 @@
+# Disable MultiViews to prevent interference with routing
+Options -MultiViews -Indexes
+
+RewriteEngine On
+
+<IfModule mod_rewrite.c>
+    # If it's a real file, serve it directly
+    RewriteCond %{REQUEST_FILENAME} !-f
+    # Rewriting logic: Funnel everything to index.php
+    RewriteRule ^(.*)$ index.php?route=$1 [L,QSA]
+</IfModule>
+
+# Block access to sensitive files and directories
+<FilesMatch "\.(log|txt|sql|env|bak|old)$">
+    Require all denied
+</FilesMatch>
+
+# Block access to config and includes directories
+<IfModule mod_rewrite.c>
+    RewriteRule ^config/ - [F,L]
+    RewriteRule ^includes/ - [F,L]
+    RewriteRule ^router\.php$ - [F,L]
+</IfModule>
